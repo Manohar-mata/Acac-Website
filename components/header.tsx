@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, Facebook, Twitter } from "lucide-react"
+import { Menu, Facebook, Twitter, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
@@ -18,6 +18,20 @@ const navigation = [
   { name: "Media", href: "/media" },
   { name: "Emerging Players", href: "/emerging-players" },
   { name: "ACAC Achievements", href: "/achievements" },
+  {
+    name: "Leagues",
+    href: "/leagues",
+    subItems: [
+      { name: "All Teams", href: "/leagues" },
+      { name: "St. Louis Thunder", href: "/leagues/st-louis-thunder" },
+      { name: "Gateway Warriors", href: "/leagues/gateway-warriors" },
+      { name: "Arch City Eagles", href: "/leagues/arch-city-eagles" },
+      { name: "Missouri Mavericks", href: "/leagues/missouri-mavericks" },
+      { name: "River City Royals", href: "/leagues/river-city-royals" },
+      { name: "Heartland Hawks", href: "/leagues/heartland-hawks" },
+      { name: "Prairie Storm", href: "/leagues/prairie-storm" },
+    ],
+  },
 ]
 
 export default function Header() {
@@ -71,15 +85,40 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-200"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) =>
+                item.subItems ? (
+                  <div key={item.name} className="relative group">
+                    <Link
+                      href={item.href}
+                      className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-200 flex items-center"
+                    >
+                      {item.name}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </Link>
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="py-1">
+                        {item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-200"
+                  >
+                    {item.name}
+                  </Link>
+                ),
+              )}
             </nav>
 
             {/* Mobile menu button */}
@@ -104,35 +143,6 @@ export default function Header() {
                 </nav>
               </SheetContent>
             </Sheet>
-          </div>
-        </div>
-
-        {/* Secondary Navigation Bar */}
-        <div className="bg-slate-800 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center space-x-8 py-3 text-sm">
-              <Link href="/community" className="hover:text-blue-300 transition-colors">
-                Community
-              </Link>
-              <Link href="/calendar" className="hover:text-blue-300 transition-colors">
-                Calendar
-              </Link>
-              <Link href="/roster" className="hover:text-blue-300 transition-colors">
-                Roster
-              </Link>
-              <Link href="/sponsors" className="hover:text-blue-300 transition-colors">
-                Sponsors
-              </Link>
-              <Link href="/leagues" className="hover:text-blue-300 transition-colors">
-                Leagues
-              </Link>
-              <Link href="/donation" className="hover:text-blue-300 transition-colors">
-                Donation
-              </Link>
-              <Link href="/login" className="hover:text-blue-300 transition-colors">
-                Login
-              </Link>
-            </div>
           </div>
         </div>
       </header>
