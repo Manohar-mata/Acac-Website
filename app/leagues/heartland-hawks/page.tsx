@@ -130,6 +130,13 @@ export default function HeartlandHawksPage() {
               <div className="w-6 h-6 rounded-full bg-teal-600"></div>
               <div className="w-6 h-6 rounded-full bg-yellow-400"></div>
             </div>
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <img
+                src="/placeholder.svg?height=64&width=64"
+                alt="Heartland Hawks logo"
+                className="w-16 h-16 rounded-full object-cover border-2 border-white"
+              />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Heartland Hawks</h1>
             <p className="text-xl mb-6">Spin Bowling Specialists • Founded 2019</p>
             <div className="flex justify-center space-x-6 text-sm">
