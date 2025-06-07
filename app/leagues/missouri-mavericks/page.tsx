@@ -113,11 +113,11 @@ export default function MissouriMavericksPage() {
       <section className="bg-gradient-to-r from-purple-600 to-gray-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex justify-center items-center space-x-3 mb-4">
               <img
-                src="/placeholder.svg?height=64&width=64"
+                src="/placeholder.svg?height=48&width=48"
                 alt="Missouri Mavericks logo"
-                className="w-16 h-16 rounded-full object-cover border-2 border-white"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white"
               />
             </div>
             <div className="flex justify-center items-center space-x-4 mb-6">

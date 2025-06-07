@@ -135,9 +135,9 @@ export default function StLouisThunderPage() {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <img
-                src="/placeholder.svg?height=64&width=64"
+                src="/placeholder.svg?height=48&width=48"
                 alt="St. Louis Thunder logo"
-                className="w-16 h-16 rounded-full object-cover border-2 border-white"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white"
               />
             </div>
             <div className="flex justify-center items-center space-x-4 mb-6">
