@@ -1,0 +1,141 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { Menu, Facebook, Twitter } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Programs", href: "/programs" },
+  { name: "Registration", href: "/registration" },
+  { name: "Events", href: "/events" },
+  { name: "Coaches", href: "/coaches" },
+  { name: "Contact", href: "/contact" },
+  { name: "Media", href: "/media" },
+  { name: "Emerging Players", href: "/emerging-players" },
+  { name: "ACAC Achievements", href: "/achievements" },
+]
+
+export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  return (
+    <>
+      {/* Top Banner */}
+      <div className="bg-slate-700 text-white py-2 px-4 text-center text-sm">
+        <span className="font-medium">REGISTRATION OPEN - </span>
+        <Link href="/registration" className="text-blue-300 hover:text-blue-200 underline transition-colors">
+          Register now!
+        </Link>
+        <div className="float-right hidden sm:flex space-x-2">
+          <Link href="#" className="text-white hover:text-blue-300 transition-colors">
+            <Facebook size={16} />
+          </Link>
+          <Link href="#" className="text-white hover:text-blue-300 transition-colors">
+            <Twitter size={16} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header className="bg-white shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            {/* Logo and Title */}
+            <Link href="/" className="flex items-center space-x-4 group">
+              <div className="relative">
+                <Image
+                  src="/images/acac-logo.png"
+                  alt="American Cricket Academy Logo"
+                  width={80}
+                  height={80}
+                  className="transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="hidden sm:block">
+                <h1 className="text-2xl lg:text-3xl font-bold">
+                  <span className="text-red-600">A</span>
+                  <span className="text-blue-600">MERICAN </span>
+                  <span className="text-red-600">C</span>
+                  <span className="text-blue-600">RICKET </span>
+                  <span className="text-red-600">A</span>
+                  <span className="text-blue-600">CADEMY</span>
+                </h1>
+                <p className="text-slate-600 italic text-sm lg:text-base">A Non-Profit Organization</p>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-1">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-200"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile menu button */}
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col space-y-4 mt-8">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+
+        {/* Secondary Navigation Bar */}
+        <div className="bg-slate-800 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-center space-x-8 py-3 text-sm">
+              <Link href="/community" className="hover:text-blue-300 transition-colors">
+                Community
+              </Link>
+              <Link href="/calendar" className="hover:text-blue-300 transition-colors">
+                Calendar
+              </Link>
+              <Link href="/roster" className="hover:text-blue-300 transition-colors">
+                Roster
+              </Link>
+              <Link href="/sponsors" className="hover:text-blue-300 transition-colors">
+                Sponsors
+              </Link>
+              <Link href="/leagues" className="hover:text-blue-300 transition-colors">
+                Leagues
+              </Link>
+              <Link href="/donation" className="hover:text-blue-300 transition-colors">
+                Donation
+              </Link>
+              <Link href="/login" className="hover:text-blue-300 transition-colors">
+                Login
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
+  )
+}
